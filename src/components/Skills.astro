@@ -16,29 +16,22 @@ const t = ui[lang];
 
 <section id="skills" aria-labelledby="skills-heading" class="py-12">
   <SectionHeading kicker={t.skillsKicker} title={t.skillsTitle} />
-  <ul class="grid gap-x-10 gap-y-5 sm:grid-cols-2">
+  <div class="grid gap-8 sm:grid-cols-3">
     {
-      data.skills.map((skill) => (
-        <li>
-          <div class="mb-1.5 flex items-baseline justify-between text-sm">
-            <span class="font-medium text-stone-800">{skill.name}</span>
-            <span class="text-stone-500">{skill.level}%</span>
-          </div>
-          <div
-            role="progressbar"
-            aria-valuenow={skill.level}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label={skill.name}
-            class="h-2.5 overflow-hidden rounded-full bg-cream-200"
-          >
-            <div
-              class="h-full rounded-full bg-clay-600"
-              style={`width: ${skill.level}%`}
-            />
-          </div>
-        </li>
+      data.skillGroups.map((group) => (
+        <div>
+          <h3 class="mb-3 text-xs font-semibold uppercase tracking-widest text-clay-700">
+            {group.title}
+          </h3>
+          <ul class="flex flex-wrap gap-2" aria-label={group.title}>
+            {group.items.map((item) => (
+              <li class="rounded-full border border-stone-200/70 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-stone-800 shadow-[0_2px_10px_-4px_rgba(120,80,40,0.15)]">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </section>

@@ -10,7 +10,6 @@ export const cv: CvData = {
     title: 'Álvaro Jiménez Martín — Mobile Engineer',
     description:
       'Personal website of Álvaro Jiménez Martín, Mobile Engineer at Meta working remotely from Spain. React Native, mobile development and AI.',
-    keywords: ['react native', 'mobile engineer', 'curriculum', 'alvaro jimenez'],
     authorName: 'Álvaro Jiménez Martín',
     authorAvatar: '/images/avatar.jpg',
     siteUrl: 'https://alvarojimenezmartin.com',
@@ -24,16 +23,19 @@ export const cv: CvData = {
   authorDescription: `I'm a Mobile Engineer at Meta, working remotely from Chiclana de la Frontera, Spain. I specialize in React Native and mobile development, with a background that spans full-stack JavaScript, blockchain solutions, and a variety of stacks including React, AngularJS, .Net, Java, and Android.<br/><br/>
   Over the years I've worked with startups, mid-size companies, and large corporations — from being one of the first five employees at a London startup to building mobile products used at global scale.<br/><br/>
   I'm committed to delivering high-quality, reliable software: whether it's building a new feature, fixing a tricky bug, or exploring what AI can do for mobile development.`,
-  skills: [
-    { name: 'HTML', level: 90 },
-    { name: 'CSS', level: 85 },
-    { name: 'Javascript', level: 90 },
-    { name: 'React', level: 85 },
-    { name: 'ReactNative', level: 85 },
-    { name: 'NodeJs', level: 40 },
-    { name: 'Git', level: 75 },
-    { name: 'Bitcoin', level: 30 },
-    { name: 'Ethereum & smart contracts', level: 30 },
+  skillGroups: [
+    {
+      title: 'Core',
+      items: ['React Native', 'TypeScript', 'React', 'JavaScript'],
+    },
+    {
+      title: 'Experienced',
+      items: ['CSS', 'HTML', 'Git', 'Node.js'],
+    },
+    {
+      title: 'Also in the toolbox',
+      items: ['Android', 'Java', '.NET'],
+    },
   ],
   jobs: [
     {

@@ -11,7 +11,6 @@ export interface SiteMeta {
   title: string;
   /** meta description / og:description */
   description: string;
-  keywords: string[];
   authorName: string;
   authorAvatar: string;
   siteUrl: string;
@@ -20,10 +19,10 @@ export interface SiteMeta {
   locale: string;
 }
 
-export interface Skill {
-  name: string;
-  /** 0–100 */
-  level: number;
+export interface SkillGroup {
+  /** Display title of the group — already localized in each data file. */
+  title: string;
+  items: string[];
 }
 
 export interface MonthYear {
@@ -95,7 +94,7 @@ export interface CvData {
   authorDescription: string;
   heroRole: string;
   heroLocation: string;
-  skills: Skill[];
+  skillGroups: SkillGroup[];
   jobs: Job[];
   /** New section — provisional content, clearly editable. */
   ai: AiHighlight[];

@@ -46,12 +46,14 @@ npm run preview   # serve dist/ locally
 - Sitemap via `@astrojs/sitemap` (en + es, hreflang aware).
 - SEO: per-language title/description, canonical, OG/Twitter tags, hreflang.
 
-## Deploy (Cloudflare Pages, when ready)
+## Deploy (Cloudflare Pages) — done 12/09/2026
 
-1. Push this folder to the GitHub repo (see note below about the repo name).
-2. Cloudflare dashboard → Pages → connect the repo. Build command: `npm run build`,
-   output dir: `dist`. No env vars needed.
-3. Add custom domain `alvarojimenezmartin.com` in the Pages project.
+- Project `personal-page` connected to this repo (branch `master`, preset Astro,
+  build `npm run build`, output `dist`). Every push to `master` auto-deploys.
+- Custom domains: `alvarojimenezmartin.com` (Active, SSL) + `www`.
+- Live at https://alvarojimenezmartin.com and
+  https://personal-page-30i.pages.dev.
+- Local preview: `npm run preview` serves `dist/`.
 
 ## ⚠️ Content needing Álvaro's review
 
