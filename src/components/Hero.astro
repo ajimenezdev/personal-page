@@ -1,0 +1,59 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+const contactHref = `${lang === 'es' ? '/es' : ''}/#contact`;
+---
+
+<section id="top" aria-labelledby="hero-heading" class="pt-14 pb-4 sm:pt-20">
+  <div
+    class="rounded-3xl border border-stone-200/60 bg-white/70 px-6 py-10 shadow-[0_8px_30px_-12px_rgba(120,80,40,0.18)] sm:px-12 sm:py-14"
+  >
+    <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
+      <img
+        src={data.meta.authorAvatar}
+        alt={`Portrait of ${data.meta.authorName}`}
+        width="160"
+        height="160"
+        class="h-32 w-32 shrink-0 rounded-full border-4 border-clay-100 object-cover sm:h-40 sm:w-40"
+      />
+      <div>
+        <p class="mb-3 text-sm font-medium text-clay-700">{t.heroGreeting}</p>
+        <h1
+          id="hero-heading"
+          class="font-display text-4xl font-semibold text-stone-900 sm:text-5xl"
+        >
+          {data.meta.authorName}
+        </h1>
+        <p class="mt-3 text-lg text-stone-600">
+          {data.heroRole}
+        </p>
+        <p class="mt-1 text-sm text-stone-500">{data.heroLocation}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href={contactHref}
+            class="rounded-full bg-clay-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-clay-800"
+          >
+            {t.heroCtaContact}
+          </a>
+          <a
+            href={data.meta.resumePath}
+            download={t.resumeFileName}
+            class="rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold text-stone-700 transition-colors hover:border-clay-200 hover:text-clay-700"
+          >
+            {t.heroCtaResume}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

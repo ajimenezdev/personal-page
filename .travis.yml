@@ -1,9 +1,0 @@
-sudo: required
-language: node_js
-
-node_js: node
-
-dist: trusty
-
-script:
-  - yarn install

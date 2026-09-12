@@ -1,0 +1,45 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+---
+
+<section id="ai" aria-labelledby="ai-heading" class="py-12">
+  <SectionHeading kicker={t.aiKicker} title={t.aiTitle} />
+  <p
+    class="mb-6 inline-block rounded-full bg-clay-50 px-3 py-1 text-xs font-medium text-clay-700"
+  >
+    {t.aiDraftNote}
+  </p>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      data.ai.map((item) => (
+        <article class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)]">
+          <h3 class="font-display text-lg font-semibold text-stone-900">
+            {item.title}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-stone-600">
+            {item.description}
+          </p>
+          <ul class="mt-4 flex flex-wrap gap-2" aria-label={item.title}>
+            {item.tags.map((tag) => (
+              <li class="rounded-full bg-cream-100 px-2.5 py-1 text-xs font-medium text-clay-700">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>

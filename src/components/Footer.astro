@@ -1,0 +1,35 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-stone-200/70 bg-cream-100">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-5 py-8 text-sm text-stone-500 sm:flex-row"
+  >
+    <p>
+      © {year} {data.meta.authorName} · {t.footerRights}
+    </p>
+    <p class="flex items-center gap-1.5">
+      {t.footerBuiltWith}
+      <span aria-hidden="true" class="text-clay-600">·</span>
+      <a
+        href={data.social.github}
+        class="underline decoration-clay-200 underline-offset-4 hover:text-clay-700"
+      >
+        GitHub
+      </a>
+    </p>
+  </div>
+</footer>

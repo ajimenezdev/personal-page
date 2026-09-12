@@ -1,0 +1,85 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+
+const canonicalPath = lang === 'es' ? '/es/' : '/';
+const canonical = new URL(canonicalPath, data.meta.siteUrl).toString();
+const altCanonical = new URL(
+  lang === 'es' ? '/' : '/es/',
+  data.meta.siteUrl,
+).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{data.meta.title}</title>
+    <meta name="description" content={data.meta.description} />
+    <meta name="keywords" content={data.meta.keywords.join(', ')} />
+    <meta name="author" content={data.meta.authorName} />
+    <link rel="canonical" href={canonical} />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL('/', data.meta.siteUrl).toString()}
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href={new URL('/es/', data.meta.siteUrl).toString()}
+    />
+    <link rel="alternate" hreflang="x-default" href={altCanonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={data.meta.authorName} />
+    <meta property="og:title" content={data.meta.title} />
+    <meta property="og:description" content={data.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={data.meta.locale} />
+    <meta
+      property="og:image"
+      content={new URL(data.meta.authorAvatar, data.meta.siteUrl).toString()}
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={data.meta.title} />
+    <meta name="twitter:description" content={data.meta.description} />
+
+    <meta name="theme-color" content="#fdfbf7" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-clay-700 focus:px-4 focus:py-2 focus:text-white"
+    >
+      {t.skipToContent}
+    </a>
+    <Header lang={lang} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

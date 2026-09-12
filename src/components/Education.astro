@@ -1,0 +1,55 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+---
+
+<section id="education" aria-labelledby="education-heading" class="py-12">
+  <SectionHeading kicker={t.educationKicker} title={t.educationTitle} />
+  <div class="grid gap-5 lg:grid-cols-2">
+    <div class="space-y-5">
+      {
+        data.education.map((edu) => (
+          <article class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)]">
+            <h3 class="font-display text-lg font-semibold text-stone-900">
+              {edu.school}
+            </h3>
+            <p class="mt-1 text-sm text-stone-600">
+              {edu.degree} · {edu.field}
+            </p>
+            <p class="mt-1 text-sm font-medium text-clay-700">
+              {edu.startYear} — {edu.endYear}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+    <div
+      class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)]"
+    >
+      <h3 class="font-display text-lg font-semibold text-stone-900">
+        {t.languagesTitle}
+      </h3>
+      <ul class="mt-3 space-y-2">
+        {
+          data.languages.map((l) => (
+            <li class="flex items-baseline justify-between gap-4 text-sm">
+              <span class="font-medium text-stone-800">{l.language}</span>
+              <span class="text-stone-500">{l.level}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

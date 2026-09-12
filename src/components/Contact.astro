@@ -1,0 +1,54 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+
+const emailHref = `mailto:${data.social.email}`;
+const socials = [
+  { label: 'LinkedIn', href: data.social.linkedin },
+  { label: 'GitHub', href: data.social.github },
+  { label: 'Twitter / X', href: data.social.twitter },
+];
+---
+
+<section id="contact" aria-labelledby="contact-heading" class="py-12">
+  <SectionHeading kicker={t.contactKicker} title={t.contactTitle} />
+  <div
+    class="rounded-3xl border border-clay-100 bg-clay-50 px-6 py-10 text-center sm:px-12"
+  >
+    <p class="mx-auto max-w-xl text-lg leading-relaxed text-stone-700">
+      {t.contactText}
+    </p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href={emailHref}
+        class="rounded-full bg-clay-700 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-clay-800"
+      >
+        {t.contactEmailCta}
+      </a>
+      {
+        socials.map((s) => (
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold text-stone-700 transition-colors hover:border-clay-200 hover:text-clay-700"
+          >
+            {s.label}
+          </a>
+        ))
+      }
+    </div>
+    <p class="mt-5 text-sm text-stone-500">{data.social.email}</p>
+  </div>
+</section>

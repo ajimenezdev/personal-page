@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Warm modern theme: warm neutrals + one terracotta accent. */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fraunces", "Georgia", "Times New Roman", serif;
+
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #faf6ee;
+  --color-cream-200: #f3ecdf;
+
+  --color-clay-50: #fbf3ec;
+  --color-clay-100: #f6e4d3;
+  --color-clay-200: #ecc8a6;
+  --color-clay-600: #b4531f;
+  --color-clay-700: #9a3412;
+  --color-clay-800: #7c2d12;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-cream-50);
+  color: var(--color-stone-800);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-clay-100);
+  color: var(--color-clay-800);
+}
+
+/* Visible, consistent keyboard focus. */
+:focus-visible {
+  outline: 3px solid var(--color-clay-600);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Anchor offset so sticky header doesn't cover section headings. */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import AiFocus from '../components/AiFocus.astro';
+import Education from '../components/Education.astro';
+import Publications from '../components/Publications.astro';
+import Projects from '../components/Projects.astro';
+import Hobbies from '../components/Hobbies.astro';
+import Contact from '../components/Contact.astro';
+
+const lang = 'en';
+---
+
+<BaseLayout lang={lang}>
+  <div class="mx-auto max-w-5xl px-5">
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Skills lang={lang} />
+    <Experience lang={lang} />
+    <AiFocus lang={lang} />
+    <Education lang={lang} />
+    <Publications lang={lang} />
+    <Projects lang={lang} />
+    <Hobbies lang={lang} />
+    <Contact lang={lang} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+---
+
+<section id="hobbies" aria-labelledby="hobbies-heading" class="py-12">
+  <SectionHeading kicker={t.hobbiesKicker} title={t.hobbiesTitle} />
+  <ul class="flex flex-wrap gap-3">
+    {
+      data.hobbies.map((hobby) => (
+        <li class="inline-flex items-center gap-2.5 rounded-full border border-stone-200/70 bg-white/70 px-4 py-2.5 text-sm font-medium text-stone-700 shadow-[0_2px_12px_-6px_rgba(120,80,40,0.2)]">
+          <span aria-hidden="true" class="text-clay-600">
+            {hobby.icon === 'football' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7.5l3.2 2.3-1.2 3.7h-4l-1.2-3.7L12 7.5z" />
+                <path d="M12 3.5v4M18.4 8.2l-3.2 1.6M16.9 16.6l-2.9-3.1M7.1 16.6l2.9-3.1M5.6 8.2l3.2 1.6" />
+              </svg>
+            )}
+            {hobby.icon === 'camera' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="7" width="18" height="13" rx="2.5" />
+                <circle cx="12" cy="13.5" r="3.5" />
+                <path d="M8.5 7l1.2-2.5h4.6L15.5 7" />
+              </svg>
+            )}
+            {hobby.icon === 'hiking' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 19l6-10 4 6 3-4 5 8H3z" />
+                <circle cx="17.5" cy="5.5" r="1.8" />
+              </svg>
+            )}
+            {hobby.icon === 'travel' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 3L10.5 13.5" />
+                <path d="M21 3l-6.8 18-3.7-7.5L3 9.8 21 3z" />
+              </svg>
+            )}
+            {hobby.icon === 'tv' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="12" rx="2" />
+                <path d="M9 21h6" />
+              </svg>
+            )}
+          </span>
+          {hobby.name}
+        </li>
+      ))
+    }
+  </ul>
+</section>

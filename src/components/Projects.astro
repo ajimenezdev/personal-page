@@ -1,0 +1,95 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { fetchTopRepos, githubProfileUrl } from '../data/github';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+
+// Runs at BUILD TIME — never in the browser. Never throws.
+const repos = await fetchTopRepos();
+---
+
+<section id="projects" aria-labelledby="projects-heading" class="py-12">
+  <SectionHeading kicker={t.projectsKicker} title={t.projectsTitle} />
+  <p class="mb-6 max-w-3xl text-stone-600">{t.projectsIntro}</p>
+
+  {
+    repos.length > 0 ? (
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {repos.map((repo) => (
+          <article class="flex flex-col rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)] transition-transform hover:-translate-y-0.5">
+            <h3 class="font-display text-lg font-semibold text-stone-900">
+              <a
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline decoration-clay-200 decoration-2 underline-offset-4 hover:text-clay-700 hover:decoration-clay-600"
+              >
+                {repo.name}
+              </a>
+            </h3>
+            {repo.description && (
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-stone-600">
+                {repo.description}
+              </p>
+            )}
+            <p class="mt-4 flex items-center gap-4 text-xs text-stone-500">
+              {repo.language && (
+                <span class="font-medium text-stone-600">{repo.language}</span>
+              )}
+              <span
+                aria-label={`${repo.stargazers_count} ${t.stars}`}
+                class="inline-flex items-center gap-1"
+              >
+                <svg
+                  aria-hidden="true"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="text-clay-600"
+                >
+                  <path d="M12 2l2.9 6.26 6.6.72-4.9 4.55 1.35 6.47L12 16.9 6.05 20l1.35-6.47-4.9-4.55 6.6-.72L12 2z" />
+                </svg>
+                {repo.stargazers_count}
+              </span>
+            </p>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 text-sm text-stone-500">
+        {t.projectsFallback}{' '}
+        <a
+          href={githubProfileUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-clay-700 underline underline-offset-4 hover:text-clay-800"
+        >
+          {t.viewOnGithub}
+        </a>
+      </p>
+    )
+  }
+
+  <p class="mt-6">
+    <a
+      href={githubProfileUrl()}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold text-stone-700 transition-colors hover:border-clay-200 hover:text-clay-700"
+    >
+      {t.viewOnGithub}
+      <span aria-hidden="true">→</span>
+    </a>
+  </p>
+</section>

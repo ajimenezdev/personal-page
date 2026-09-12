@@ -1,0 +1,25 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+
+// Same paragraph convention as the old site: <br/><br/> separates paragraphs.
+const paragraphs = data.authorDescription.split(/<br\s*\/?>\s*<br\s*\/?>/);
+---
+
+<section id="about" aria-labelledby="about-heading" class="py-12">
+  <SectionHeading kicker={t.aboutKicker} title={t.aboutTitle} />
+  <div class="max-w-3xl space-y-4 text-lg leading-relaxed text-stone-700">
+    {paragraphs.map((p) => <p>{p.trim()}</p>)}
+  </div>
+</section>

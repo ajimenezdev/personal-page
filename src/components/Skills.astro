@@ -1,0 +1,44 @@
+---
+import type { Lang } from '../data/types';
+import { cv as cvEn } from '../data/cv.en';
+import { cv as cvEs } from '../data/cv.es';
+import { ui } from '../i18n/ui';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const data = lang === 'es' ? cvEs : cvEn;
+const t = ui[lang];
+---
+
+<section id="skills" aria-labelledby="skills-heading" class="py-12">
+  <SectionHeading kicker={t.skillsKicker} title={t.skillsTitle} />
+  <ul class="grid gap-x-10 gap-y-5 sm:grid-cols-2">
+    {
+      data.skills.map((skill) => (
+        <li>
+          <div class="mb-1.5 flex items-baseline justify-between text-sm">
+            <span class="font-medium text-stone-800">{skill.name}</span>
+            <span class="text-stone-500">{skill.level}%</span>
+          </div>
+          <div
+            role="progressbar"
+            aria-valuenow={skill.level}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={skill.name}
+            class="h-2.5 overflow-hidden rounded-full bg-cream-200"
+          >
+            <div
+              class="h-full rounded-full bg-clay-600"
+              style={`width: ${skill.level}%`}
+            />
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
