@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Última mañana en NY</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: #0f1f14; color: #f2f6f2; padding: 16px; line-height: 1.45; }
+  .wrap { max-width: 560px; margin: 0 auto; }
+  header { text-align: center; padding: 18px 10px 8px; }
+  header h1 { font-size: 1.5rem; }
+  header p { color: #b9d2bc; margin-top: 6px; font-size: .95rem; }
+  .clima { background: #173d24; border: 1px solid #2e6b40; border-radius: 12px; padding: 10px 14px; margin: 12px 0 18px; text-align: center; font-size: .95rem; }
+  .audio-tip { background: #14342a; border: 1px solid #2e6b40; border-radius: 10px; padding: 9px 12px; margin-bottom: 14px; font-size: .9rem; color: #c9e3cd; }
+  .bloque { margin-bottom: 20px; }
+  .bloque h2 { font-size: 1.02rem; color: #8fd69b; margin-bottom: 8px; letter-spacing: .02em; }
+  .parada { display: block; background: #173324; border: 1px solid #2e6b40; border-radius: 14px; padding: 14px; margin-bottom: 10px; text-decoration: none; color: inherit; }
+  .guia { background: #1a3a28; }
+  .hora { color: #8fd69b; font-weight: 700; font-size: .85rem; letter-spacing: .03em; }
+  .nombre { font-size: 1.1rem; font-weight: 700; margin: 2px 0; }
+  .nota { color: #c7dcc9; font-size: .92rem; }
+  .pin { display: inline-block; margin-top: 10px; background: #2e7d46; color: #fff; padding: 9px 16px; border-radius: 999px; font-size: .92rem; font-weight: 600; }
+  .guia audio { width: 100%; margin-top: 10px; }
+  .guia .pin { background: #256b3d; }
+  .metro { border-style: dashed; }
+  footer { text-align: center; color: #9db8a2; font-size: .85rem; padding: 6px 0 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🐾 Última mañana en NY</h1>
+    <p>Central Park + Quinta Avenida · Viernes 2 de octubre · 11:00–16:00</p>
+  </header>
+
+  <div class="clima">☀️ Sol y calor todo el tramo, 26–29 °C. La lluvia no llega hasta las 17:00: tú ya estarás en el hotel.</div>
+  <div class="audio-tip">🎧 <strong>Audioguía:</strong> cada tarjeta verde tiene su audio. Pulsa play antes de llegar y ve escuchando; los tiempos van sobrados para caminar a ritmo tranquilo.</div>
+
+  <div class="bloque">
+    <h2>🚇 IDA AL PARQUE</h2>
+    <div class="parada guia">
+      <div class="hora">11:00 · EN EL METRO · 2:00</div>
+      <div class="nombre">De camino al parque</div>
+      <div class="nota">Cómo salir de Columbus Circle y la entrada suroeste del parque.</div>
+      <audio controls preload="metadata" src="01-camino.mp3"></audio>
+    </div>
+    <a class="parada metro" href="https://www.google.com/maps/dir/?api=1&destination=40.7677,-73.98204&travelmode=transit&origin=40.75033,-73.99396">
+      <div class="hora">11:00 · METRO</div>
+      <div class="nombre">Penn Station → Columbus Circle</div>
+      <div class="nota">Desde la oficina (Farley o Hudson Yards): líneas A/C/E o 1 hasta 59 St-Columbus Circle. ~12 min.</div>
+      <span class="pin">🗺️ Ruta en Google Maps</span>
+    </a>
+  </div>
+
+  <div class="bloque">
+    <h2>🌳 CENTRAL PARK SIN PRISAS · 11:30–14:00</h2>
+    <div class="parada guia">
+      <div class="hora">11:30 · 1:45</div>
+      <div class="nombre">The Mall</div>
+      <div class="nota">La gran avenida de olmos del parque. Se entra subiendo desde la esquina suroeste.</div>
+      <audio controls preload="metadata" src="02-the-mall.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=40.77208,-73.9717">📍 Ver en Google Maps</a>
+    </div>
+    <div class="parada guia">
+      <div class="hora">2:05</div>
+      <div class="nombre">Fuente Bethesda</div>
+      <div class="nota">El corazón del parque: la terraza y la fuente del ángel. Foto obligada.</div>
+      <audio controls preload="metadata" src="03-bethesda.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=Bethesda+Fountain+Central+Park">📍 Ver en Google Maps</a>
+    </div>
+    <div class="parada guia">
+      <div class="hora">1:40</div>
+      <div class="nombre">Bow Bridge</div>
+      <div class="nota">El puente romántico sobre The Lake, con el skyline de fondo.</div>
+      <audio controls preload="metadata" src="04-bow-bridge.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=40.77575,-73.97174">📍 Ver en Google Maps</a>
+    </div>
+    <div class="parada guia">
+      <div class="hora">1:50</div>
+      <div class="nombre">The Pond y Gapstow</div>
+      <div class="nota">Tramo final bajando hacia la salida sureste, junto a la 5ª Avenida.</div>
+      <audio controls preload="metadata" src="05-the-pond.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=The+Pond+Central+Park">📍 Ver en Google Maps</a>
+    </div>
+  </div>
+
+  <div class="bloque">
+    <h2>🏙️ QUINTA AVENIDA · 14:00–14:30</h2>
+    <div class="parada guia">
+      <div class="hora">1:45</div>
+      <div class="nombre">Grand Army Plaza y la Quinta</div>
+      <div class="nota">Salida del parque (5ª con la 59): The Plaza y el cubo de Apple.</div>
+      <audio controls preload="metadata" src="06-quinta-avenida.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=40.76427,-73.97302">📍 Ver en Google Maps</a>
+    </div>
+    <div class="parada guia">
+      <div class="hora">2:40</div>
+      <div class="nombre">San Patricio y Rockefeller</div>
+      <div class="nota">La catedral en la 50 y, justo enfrente, el Rockefeller Center.</div>
+      <audio controls preload="metadata" src="07-san-patricio-rockefeller.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=40.75845,-73.9759">📍 Ver en Google Maps</a>
+    </div>
+  </div>
+
+  <div class="bloque">
+    <h2>🌆 TIMES SQUARE + COMIDA · 14:30–15:45</h2>
+    <div class="parada guia">
+      <div class="hora">2:10</div>
+      <div class="nombre">Times Square</div>
+      <div class="nota">A 10 min andando desde el Rockefeller. Neones, caos y algo rápido de comer por la zona.</div>
+      <audio controls preload="metadata" src="08-times-square.mp3"></audio>
+      <a class="pin" href="https://www.google.com/maps/search/?api=1&query=40.75543,-73.98651">📍 Ver en Google Maps</a>
+    </div>
+  </div>
+
+  <div class="bloque">
+    <h2>🚇 RETIRADA · 15:45–16:00</h2>
+    <a class="parada metro" href="https://www.google.com/maps/dir/?api=1&destination=40.74634,-73.99096&travelmode=transit&origin=40.75543,-73.98651">
+      <div class="hora">15:45 · METRO</div>
+      <div class="nombre">Times Square → Moxy Chelsea</div>
+      <div class="nota">Líneas R/W hacia el sur hasta 28th St. ~8 min. A las 16:00 en el hotel para la maleta.</div>
+      <span class="pin">🗺️ Ruta en Google Maps</span>
+    </a>
+  </div>
+
+  <footer>Buen paseo, Álvaro. La colita ya está moviéndose 🐾</footer>
+</div>
+</body>
+</html>
