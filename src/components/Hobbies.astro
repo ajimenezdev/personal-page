@@ -14,12 +14,12 @@ const data = lang === 'es' ? cvEs : cvEn;
 const t = ui[lang];
 ---
 
-<section id="hobbies" aria-labelledby="hobbies-heading" class="py-12">
-  <SectionHeading kicker={t.hobbiesKicker} title={t.hobbiesTitle} />
-  <ul class="flex flex-wrap gap-3">
+<section id="hobbies" aria-labelledby="hobbies-heading" class="py-16">
+  <SectionHeading title={t.hobbiesTitle} />
+  <ul class="flex flex-wrap gap-5">
     {
       data.hobbies.map((hobby) => (
-        <li class="inline-flex items-center gap-2.5 rounded-full border border-stone-200/70 bg-white/70 px-4 py-2.5 text-sm font-medium text-stone-700 shadow-[0_2px_12px_-6px_rgba(120,80,40,0.2)]">
+        <li class="inline-flex items-center gap-2.5 rounded-full border border-stone-200/70 bg-paper/70 px-4 py-2.5 text-sm font-medium text-stone-700 shadow-chip-lg">
           <span aria-hidden="true" class="text-clay-600">
             {hobby.icon === 'football' && (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">

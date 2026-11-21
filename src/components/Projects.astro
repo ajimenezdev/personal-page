@@ -18,15 +18,15 @@ const t = ui[lang];
 const repos = await fetchTopRepos();
 ---
 
-<section id="projects" aria-labelledby="projects-heading" class="py-12">
-  <SectionHeading kicker={t.projectsKicker} title={t.projectsTitle} />
+<section id="projects" aria-labelledby="projects-heading" class="py-16">
+  <SectionHeading title={t.projectsTitle} />
   <p class="mb-6 max-w-3xl text-stone-600">{t.projectsIntro}</p>
 
   {
     repos.length > 0 ? (
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {repos.map((repo) => (
-          <article class="flex flex-col rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)] transition-transform hover:-translate-y-0.5">
+          <article class="flex flex-col rounded-2xl border border-stone-200/60 bg-paper/70 p-6 shadow-card transition-transform hover:-translate-y-0.5">
             <h3 class="font-display text-lg font-semibold text-stone-900">
               <a
                 href={repo.html_url}
@@ -47,7 +47,7 @@ const repos = await fetchTopRepos();
                 <span class="font-medium text-stone-600">{repo.language}</span>
               )}
               <span
-                aria-label={`${repo.stargazers_count} ${t.stars}`}
+                aria-label={`${repo.stargazers_count} ${repo.stargazers_count === 1 ? t.star : t.stars}`}
                 class="inline-flex items-center gap-1"
               >
                 <svg
@@ -67,7 +67,7 @@ const repos = await fetchTopRepos();
         ))}
       </div>
     ) : (
-      <p class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 text-sm text-stone-500">
+      <p class="rounded-2xl border border-stone-200/60 bg-paper/70 p-6 text-sm text-stone-500">
         {t.projectsFallback}{' '}
         <a
           href={githubProfileUrl()}
@@ -86,10 +86,9 @@ const repos = await fetchTopRepos();
       href={githubProfileUrl()}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-semibold text-stone-700 transition-colors hover:border-clay-200 hover:text-clay-700"
+      class="inline-flex items-center rounded-full border border-stone-300 bg-paper px-5 py-2.5 text-sm font-semibold text-stone-700 transition-colors hover:border-clay-200 hover:text-clay-700"
     >
       {t.viewOnGithub}
-      <span aria-hidden="true">→</span>
     </a>
   </p>
 </section>

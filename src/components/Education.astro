@@ -14,19 +14,18 @@ const data = lang === 'es' ? cvEs : cvEn;
 const t = ui[lang];
 ---
 
-<section id="education" aria-labelledby="education-heading" class="py-12">
-  <SectionHeading kicker={t.educationKicker} title={t.educationTitle} />
+<section id="education" aria-labelledby="education-heading" class="py-16">
+  <SectionHeading title={t.educationTitle} />
   <div class="grid gap-5 lg:grid-cols-2">
     <div class="space-y-5">
       {
         data.education.map((edu) => (
-          <article class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)]">
+          <article class="rounded-2xl border border-stone-200/60 bg-paper/70 p-6 shadow-card">
             <h3 class="font-display text-lg font-semibold text-stone-900">
               {edu.school}
             </h3>
-            <p class="mt-1 text-sm text-stone-600">
-              {edu.degree} · {edu.field}
-            </p>
+            <p class="mt-1 text-sm text-stone-600">{edu.degree}</p>
+            <p class="text-sm text-stone-600">{edu.field}</p>
             <p class="mt-1 text-sm font-medium text-clay-700">
               {edu.startYear} — {edu.endYear}
             </p>
@@ -35,7 +34,7 @@ const t = ui[lang];
       }
     </div>
     <div
-      class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)]"
+      class="rounded-2xl border border-stone-200/60 bg-paper/70 p-6 shadow-card"
     >
       <h3 class="font-display text-lg font-semibold text-stone-900">
         {t.languagesTitle}

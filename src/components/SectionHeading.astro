@@ -1,19 +1,15 @@
 ---
 interface Props {
-  kicker: string;
   title: string;
 }
 
-const { kicker, title } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <div class="mb-10">
-  <p
-    class="mb-2 text-xs font-semibold tracking-[0.18em] text-clay-600 uppercase"
+  <h2
+    class="font-display text-[40px] font-semibold leading-tight text-stone-900"
   >
-    {kicker}
-  </p>
-  <h2 class="font-display text-3xl font-semibold text-stone-900 sm:text-4xl">
     {title}
   </h2>
 </div>

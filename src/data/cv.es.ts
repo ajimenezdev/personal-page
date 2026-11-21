@@ -16,7 +16,7 @@ export const cv: CvData = {
     locale: 'es_ES',
   },
   heroRole: 'Mobile Engineer en Meta',
-  heroLocation: 'Chiclana de la Frontera, España · En remoto',
+  heroLocation: 'Chiclana de la Frontera, España (En remoto)',
   // BORRADOR — revisar.
   authorDescription: `Soy Mobile Engineer en Meta, trabajando en remoto desde Chiclana de la Frontera (España). Me especializo en React Native y desarrollo móvil, con una trayectoria que abarca JavaScript full-stack, soluciones blockchain y una gran variedad de stacks: React, AngularJS, .Net, Java y Android.<br/><br/>
   A lo largo de los años he trabajado en startups, medianas empresas y grandes corporaciones — desde ser uno de los cinco primeros empleados de una startup londinense hasta construir productos móviles a escala global.<br/><br/>
@@ -189,7 +189,10 @@ export const cv: CvData = {
     { label: 'Habilidades', url: 'skills' },
     { label: 'Experiencia', url: 'experience' },
     { label: 'IA', url: 'ai' },
+    { label: 'Educación', url: 'education' },
+    { label: 'Publicaciones', url: 'publications' },
     { label: 'Proyectos', url: 'projects' },
+    { label: 'Aficiones', url: 'hobbies' },
     { label: 'Contacto', url: 'contact' },
   ],
 };

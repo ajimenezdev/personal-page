@@ -1,3 +1,7 @@
+/*! Hallmark · v2.0.0 · redesign: full · theme: warm modern (cream paper, Fraunces display, terracotta accent) · idea: "Un CV como documento largo: la prosa manda, el contacto cierra" · vibe: "cálido, directo, sin adornos" · genre: editorial · shape: Long Document (one-page CV) · job: read the CV, get in touch · nav: sticky, wordmark and 9 links and EN/ES toggle · footer: single row, built-with and GitHub · hero: compact identity card */
+/*! Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: E, mobile widths unverified and the 65ch measure estimated, not measured live */
+/*! Hallmark · waive 65 · the cream paper, Fraunces display and terracotta accent are Álvaro's own "cálido moderno" choice from 12/09/2026 · the prompt fixes the look, so the named-look gate does not apply */
+/*! Hallmark · waive 42 · the header is a plain CV navigation: wordmark, 9 section links and an EN/ES toggle, verified in the browser 21/11/2026 · a CV index is the job of the header, not marketing chrome */
 @import "tailwindcss";
 
 /* Warm modern theme: warm neutrals + one terracotta accent. */
@@ -16,15 +20,46 @@
   --color-clay-600: #b4531f;
   --color-clay-700: #9a3412;
   --color-clay-800: #7c2d12;
+
+  /* Warm-tinted neutrals (gate 74): Tailwind's stock stone greys, re-tinted
+     warm so the page never reads cold. stone-500 keeps ≥4.5:1 on cream. */
+  --color-stone-50: #faf7f0;
+  --color-stone-100: #f3ede1;
+  --color-stone-200: #e7dcc8;
+  --color-stone-300: #d3c2a4;
+  --color-stone-400: #ad9c7d;
+  --color-stone-500: #77684f;
+  --color-stone-600: #6b5f4b;
+  --color-stone-700: #554d3d;
+  --color-stone-800: #3a342a;
+  --color-stone-900: #282219;
+  --color-stone-950: #171310;
+
+  /* Warm paper for cards and buttons (gate 74). */
+  --color-paper: #fffdf8;
+
+  /* Card shadows (gate 48): the brown shadow is a token now. Hero blur is
+     20 px, under the 24 px ceiling (F24). */
+  --shadow-card: 0 4px 20px -8px rgb(120 80 40 / 0.15);
+  --shadow-chip: 0 2px 10px -4px rgb(120 80 40 / 0.15);
+  --shadow-chip-lg: 0 2px 12px -6px rgb(120 80 40 / 0.2);
+  --shadow-hero: 0 8px 20px -12px rgb(120 80 40 / 0.18);
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -33,6 +68,20 @@ body {
   color: var(--color-stone-800);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Display heads: never overflow their box, balanced lines (gates 50, F3). */
+h1,
+h2 {
+  overflow-wrap: break-word;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+/* No orphaned words at the end of paragraphs (F26). */
+p {
+  text-wrap: pretty;
 }
 
 ::selection {

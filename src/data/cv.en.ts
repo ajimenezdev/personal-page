@@ -17,12 +17,12 @@ export const cv: CvData = {
     locale: 'en_US',
   },
   heroRole: 'Mobile Engineer @ Meta',
-  heroLocation: 'Chiclana de la Frontera, Spain · Remote',
+  heroLocation: 'Chiclana de la Frontera, Spain (Remote)',
   // NOTE (review): refreshed from the old site's text to reflect the current
   // role at Meta. Please review.
-  authorDescription: `I'm a Mobile Engineer at Meta, working remotely from Chiclana de la Frontera, Spain. I specialize in React Native and mobile development, with a background that spans full-stack JavaScript, blockchain solutions, and a variety of stacks including React, AngularJS, .Net, Java, and Android.<br/><br/>
-  Over the years I've worked with startups, mid-size companies, and large corporations — from being one of the first five employees at a London startup to building mobile products used at global scale.<br/><br/>
-  I'm committed to delivering high-quality, reliable software: whether it's building a new feature, fixing a tricky bug, or exploring what AI can do for mobile development.`,
+  authorDescription: `I’m a Mobile Engineer at Meta, working remotely from Chiclana de la Frontera, Spain. I specialize in React Native and mobile development, with a background that spans full-stack JavaScript, blockchain solutions, and a variety of stacks including React, AngularJS, .Net, Java, and Android.<br/><br/>
+  Over the years I’ve worked with startups, mid-size companies, and large corporations — from being one of the first five employees at a London startup to building mobile products used at global scale.<br/><br/>
+  I’m committed to delivering high-quality, reliable software: whether it’s building a new feature, fixing a tricky bug, or exploring what AI can do for mobile development.`,
   skillGroups: [
     {
       title: 'Core',
@@ -117,7 +117,7 @@ export const cv: CvData = {
       location: 'Majorca, Spain',
       occupation: 'Intern developer',
       description:
-        "During my summer internship, I worked on the company's intranet site, developing new features and fixing existing bugs. I was able to gain valuable experience in software development and work closely with my team members to learn from more experienced people. Overall, the internship was a great opportunity for me to learn and grow as a developer.",
+        "During my summer internship, I worked on the company’s intranet site, developing new features and fixing existing bugs. I was able to gain valuable experience in software development and work closely with my team members to learn from more experienced people. Overall, the internship was a great opportunity for me to learn and grow as a developer.",
     },
   ],
   // NOTE (review): brand-new section, provisional content — Álvaro to shape.
@@ -162,7 +162,7 @@ export const cv: CvData = {
   education: [
     {
       school: 'University of the Balearic Islands',
-      degree: "Bachelor's degree",
+      degree: "Bachelor’s degree",
       field: 'Software Engineering',
       startYear: 2006,
       endYear: 2011,
@@ -191,7 +191,10 @@ export const cv: CvData = {
     { label: 'Skills', url: 'skills' },
     { label: 'Experience', url: 'experience' },
     { label: 'AI', url: 'ai' },
+    { label: 'Education', url: 'education' },
+    { label: 'Publications', url: 'publications' },
     { label: 'Projects', url: 'projects' },
+    { label: 'Hobbies', url: 'hobbies' },
     { label: 'Contact', url: 'contact' },
   ],
 };

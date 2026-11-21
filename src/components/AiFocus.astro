@@ -14,8 +14,9 @@ const data = lang === 'es' ? cvEs : cvEn;
 const t = ui[lang];
 ---
 
-<section id="ai" aria-labelledby="ai-heading" class="py-12">
-  <SectionHeading kicker={t.aiKicker} title={t.aiTitle} />
+<section id="ai" aria-labelledby="ai-heading" class="py-16">
+  <div class="rounded-3xl bg-clay-50/70 px-5 py-8 sm:px-8">
+    <SectionHeading title={t.aiTitle} />
   <p
     class="mb-6 inline-block rounded-full bg-clay-50 px-3 py-1 text-xs font-medium text-clay-700"
   >
@@ -24,7 +25,7 @@ const t = ui[lang];
   <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {
       data.ai.map((item) => (
-        <article class="rounded-2xl border border-stone-200/60 bg-white/70 p-6 shadow-[0_4px_20px_-8px_rgba(120,80,40,0.15)]">
+        <article class="rounded-2xl border border-stone-200/60 bg-paper/70 p-6 shadow-card">
           <h3 class="font-display text-lg font-semibold text-stone-900">
             {item.title}
           </h3>
@@ -41,5 +42,7 @@ const t = ui[lang];
         </article>
       ))
     }
+  </div>
+  <p class="mt-6 text-sm text-stone-500 italic">{t.aiProofNote}</p>
   </div>
 </section>
