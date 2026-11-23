@@ -160,6 +160,13 @@ def load_data():
     assert len(languages) == 3, f"languages: {len(languages)}"
     assert len(hobbies) == 5, f"hobbies: {len(hobbies)}"
 
+    # The AI section goes in the PDF only while the website renders it:
+    # Álvaro hid the section on 23/11/2026, so the PDF drops it too.
+    # Re-adding <AiFocus /> to src/pages/index.astro brings it back here.
+    show_ai = "AiFocus" in (ROOT / "src" / "pages" / "index.astro").read_text(
+        encoding="utf-8"
+    )
+
     return {
         "hero_role": hero_role,
         "hero_location": hero_location,
@@ -167,6 +174,7 @@ def load_data():
         "skill_groups": skill_groups,
         "jobs": jobs,
         "ai": ai,
+        "show_ai": show_ai,
         "publications": publications,
         "education": education,
         "languages": languages,
@@ -286,17 +294,18 @@ def build(cv):
         pdf.ln(1.5)
 
     # ---- AI ----------------------------------------------------------
-    pdf.section("AI")
-    for item in cv["ai"]:
-        pdf.ensure_space(22)
-        pdf.set_font("Sans", "B", 10)
-        pdf.set_text_color(*INK)
-        pdf.cell(0, 5, item["title"], new_x="LMARGIN", new_y="NEXT")
-        pdf.body(item["description"])
-        pdf.set_font("Sans", "", 8.5)
-        pdf.set_text_color(*MUTED)
-        pdf.cell(0, 4, " · ".join(item["tags"]), new_x="LMARGIN", new_y="NEXT")
-        pdf.ln(2)
+    if cv["show_ai"]:
+        pdf.section("AI")
+        for item in cv["ai"]:
+            pdf.ensure_space(22)
+            pdf.set_font("Sans", "B", 10)
+            pdf.set_text_color(*INK)
+            pdf.cell(0, 5, item["title"], new_x="LMARGIN", new_y="NEXT")
+            pdf.body(item["description"])
+            pdf.set_font("Sans", "", 8.5)
+            pdf.set_text_color(*MUTED)
+            pdf.cell(0, 4, " · ".join(item["tags"]), new_x="LMARGIN", new_y="NEXT")
+            pdf.ln(2)
 
     # ---- Education & languages ---------------------------------------
     pdf.section("Education")

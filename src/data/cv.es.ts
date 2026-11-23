@@ -188,7 +188,6 @@ export const cv: CvData = {
     { label: 'Sobre mí', url: 'about' },
     { label: 'Habilidades', url: 'skills' },
     { label: 'Experiencia', url: 'experience' },
-    { label: 'IA', url: 'ai' },
     { label: 'Educación', url: 'education' },
     { label: 'Cursos', url: 'publications' },
     { label: 'Proyectos', url: 'projects' },

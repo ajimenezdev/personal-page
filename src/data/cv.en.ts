@@ -190,7 +190,6 @@ export const cv: CvData = {
     { label: 'About', url: 'about' },
     { label: 'Skills', url: 'skills' },
     { label: 'Experience', url: 'experience' },
-    { label: 'AI', url: 'ai' },
     { label: 'Education', url: 'education' },
     { label: 'Teaching', url: 'publications' },
     { label: 'Projects', url: 'projects' },
