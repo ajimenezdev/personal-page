@@ -150,6 +150,20 @@ y desplegadas en la previa. Producción NO tocada, sin push al repo.
   si desaparece, recrear el `wrangler.toml` (name `personal-page-preview`,
   assets = `dist/` local) y volver a desplegar.
 
+## Publicado en producción 21/11/2026 ~15:27
+
+Push a `master` con `~/workspace/scripts/push-personal-page.py`
+(sincronización completa por API de GitHub: blobs → tree con `base_tree` →
+commit → PATCH `refs/heads/main`; excluye `dist/`, `node_modules/`,
+`.astro/`; borra del repo los ficheros que ya no existen en local).
+Commit `68fd8652` (desde `cc042d79`): 21 ficheros modificados, 11 borrados
+(toda la carpeta `public/ny-808f63621a/`, a petición de Álvaro).
+Verificado en vivo en alvarojimenezmartin.com: 200 en EN y ES, botón del
+burger presente, h2 a 40 px, 0 puntos medios, `/ny-808f63621a/` da 404.
+Previa `personal-page-preview` borrada (su URL da error 1042 de
+Cloudflare). El proyecto Pages `personal-page` auto-despliega con cada
+push a master (tardó ~1 min en servir la nueva versión).
+
 ## Important: the GitHub repo is already renamed
 
 `ajimenezdev/gatsby-cv` now **301-redirects to `ajimenezdev/personal-page`**

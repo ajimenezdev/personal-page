@@ -77,6 +77,7 @@ const t = ui[lang];
     <button
       id="menu-button"
       type="button"
+      popovertarget="mobile-menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label={t.menuLabel}
@@ -114,7 +115,8 @@ const t = ui[lang];
 
   <div
     id="mobile-menu"
-    class="hidden border-t border-stone-200/70 md:hidden"
+    popover="auto"
+    class="hidden border-t border-stone-200/70 bg-cream-50/85 backdrop-blur md:hidden"
   >
     <nav aria-label={t.siteOwner} class="mx-auto max-w-6xl px-5 py-2">
       <ul>
@@ -175,33 +177,19 @@ const t = ui[lang];
   const iconOpen = document.getElementById('menu-icon-open');
   const iconClose = document.getElementById('menu-icon-close');
 
-  function setOpen(open: boolean) {
-    panel?.classList.toggle('hidden', !open);
+  // The menu is a native popover (`popover="auto"`, opened by the button's
+  // `popovertarget`): light-dismiss, Escape and focus return come from the
+  // browser. Only sync the button state and icons, and close the menu
+  // when a link inside it is followed (a click inside a popover does not
+  // close it by itself).
+  panel?.addEventListener('toggle', () => {
+    const open = panel.matches(':popover-open');
     button?.setAttribute('aria-expanded', String(open));
     iconOpen?.classList.toggle('hidden', open);
     iconClose?.classList.toggle('hidden', !open);
-  }
-
-  button?.addEventListener('click', () => {
-    setOpen(panel?.classList.contains('hidden') ?? false);
   });
 
   panel?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setOpen(false));
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') setOpen(false);
-  });
-
-  document.addEventListener('click', (event) => {
-    if (
-      panel &&
-      !panel.classList.contains('hidden') &&
-      event.target instanceof Node &&
-      !event.target.closest('header')
-    ) {
-      setOpen(false);
-    }
+    link.addEventListener('click', () => panel.hidePopover?.());
   });
 </script>

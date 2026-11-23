@@ -101,6 +101,40 @@ section[id] {
   scroll-margin-top: 5.5rem;
 }
 
+/* Mobile menu as a native popover (MWG Fase 2, guide `navbar`): the browser
+   provides light-dismiss, Escape and focus return. The popover is
+   top-layer, so it needs its own positioning: anchored under the menu
+   button, with a plain top offset as fallback where CSS anchor
+   positioning is not supported (Firefox). The `hidden` class stays in the
+   markup so the menu is closed without popover support; `:popover-open`
+   (higher specificity) shows it when open, only below the md breakpoint. */
+#menu-button {
+  anchor-name: --menu-button;
+}
+#mobile-menu {
+  position: fixed;
+  inset-inline: 0;
+  top: 4.25rem; /* header height (py-3 + h-11 button) */
+  top: anchor(--menu-button bottom);
+  bottom: auto;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-top-width: 1px;
+  max-height: calc(100dvh - 4.25rem);
+  overflow-y: auto;
+}
+#mobile-menu::backdrop {
+  background: transparent;
+}
+@media (width < 48rem) {
+  #mobile-menu:popover-open {
+    display: block;
+  }
+}
+
 /* Print: the page doubles as a printable CV. */
 @media print {
   header,
