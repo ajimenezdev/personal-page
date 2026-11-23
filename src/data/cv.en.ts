@@ -44,8 +44,8 @@ export const cv: CvData = {
       duration: null,
       location: 'Remote',
       occupation: 'Mobile Engineer',
-      // NOTE (review): description intentionally left empty — Álvaro to fill in.
-      description: '',
+      description:
+        'On the Ads Manager App team, I work on Notifications and the user experience around them — making sure businesses see what matters about their campaigns, clearly and on time.',
     },
     {
       company: 'Bitfinex',
@@ -192,7 +192,7 @@ export const cv: CvData = {
     { label: 'Experience', url: 'experience' },
     { label: 'AI', url: 'ai' },
     { label: 'Education', url: 'education' },
-    { label: 'Publications', url: 'publications' },
+    { label: 'Teaching', url: 'publications' },
     { label: 'Projects', url: 'projects' },
     { label: 'Hobbies', url: 'hobbies' },
     { label: 'Contact', url: 'contact' },

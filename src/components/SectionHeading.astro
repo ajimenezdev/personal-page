@@ -1,14 +1,27 @@
 ---
+type Variant = 'major' | 'default' | 'minor';
+
 interface Props {
   title: string;
+  id: string;
+  variant?: Variant;
 }
 
-const { title } = Astro.props;
+const { title, id, variant = 'default' } = Astro.props;
+
+const sizeClass =
+  variant === 'major'
+    ? 'text-4xl sm:text-5xl'
+    : variant === 'minor'
+      ? 'text-2xl sm:text-3xl'
+      : 'text-3xl sm:text-[40px]';
+const marginClass = variant === 'minor' ? 'mb-8' : 'mb-10';
 ---
 
-<div class="mb-10">
+<div class={marginClass}>
   <h2
-    class="font-display text-[40px] font-semibold leading-tight text-stone-900"
+    id={id}
+    class={`font-display ${sizeClass} font-semibold leading-tight text-stone-900`}
   >
     {title}
   </h2>

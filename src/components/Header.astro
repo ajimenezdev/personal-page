@@ -11,6 +11,14 @@ interface Props {
 const { lang } = Astro.props;
 const data = lang === 'es' ? cvEs : cvEn;
 const t = ui[lang];
+
+// The desktop nav shows at most 6 links (working-memory limit from the
+// Impeccable critique): the rest live under the "More" dropdown. The
+// mobile menu keeps the full list of 9. Splitting by url keeps the data
+// (headerLinks) untouched.
+const primaryUrls = ['about', 'skills', 'experience', 'ai', 'projects', 'contact'];
+const primaryLinks = data.headerLinks.filter((link) => primaryUrls.includes(link.url));
+const moreLinks = data.headerLinks.filter((link) => !primaryUrls.includes(link.url));
 ---
 
 <header
@@ -27,17 +35,67 @@ const t = ui[lang];
     <nav aria-label={t.siteOwner} class="hidden min-w-0 md:block">
       <ul class="flex items-center gap-1 text-sm whitespace-nowrap">
         {
-          data.headerLinks.map((link) => (
+          primaryLinks.map((link) => (
             <li>
               <a
                 href={`${lang === 'es' ? '/es' : ''}/#${link.url}`}
-                class="rounded-full px-2.5 py-1.5 text-stone-600 transition-colors hover:bg-clay-50 hover:text-clay-700"
+                data-spy={link.url}
+                class="rounded-full px-2.5 py-2.5 text-stone-600 transition-colors hover:bg-clay-50 hover:text-clay-700"
               >
                 {link.label}
               </a>
             </li>
           ))
         }
+        <li>
+          <button
+            id="more-menu-button"
+            type="button"
+            popovertarget="more-menu"
+            aria-expanded="false"
+            aria-controls="more-menu"
+            aria-haspopup="true"
+            class="inline-flex items-center gap-1 rounded-full px-2.5 py-2.5 text-stone-600 transition-colors hover:bg-clay-50 hover:text-clay-700"
+          >
+            {t.moreLabel}
+            <svg
+              id="more-menu-chevron"
+              aria-hidden="true"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform"
+            >
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div
+            id="more-menu"
+            popover="auto"
+            class="hidden"
+          >
+            <ul>
+              {
+                moreLinks.map((link) => (
+                  <li>
+                    <a
+                      href={`${lang === 'es' ? '/es' : ''}/#${link.url}`}
+                      data-spy={link.url}
+                      class="block rounded-xl px-3 py-2.5 text-sm text-stone-700 transition-colors hover:bg-clay-50 hover:text-clay-700"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </li>
       </ul>
     </nav>
 
@@ -51,7 +109,7 @@ const t = ui[lang];
         hreflang="en"
         aria-current={lang === 'en' ? 'true' : undefined}
         class:list={[
-          'rounded-full px-2.5 py-1 transition-colors',
+          'rounded-full px-2.5 py-2 transition-colors',
           lang === 'en'
             ? 'bg-clay-700 text-white'
             : 'text-stone-500 hover:text-clay-700',
@@ -64,7 +122,7 @@ const t = ui[lang];
         hreflang="es"
         aria-current={lang === 'es' ? 'true' : undefined}
         class:list={[
-          'rounded-full px-2.5 py-1 transition-colors',
+          'rounded-full px-2.5 py-2 transition-colors',
           lang === 'es'
             ? 'bg-clay-700 text-white'
             : 'text-stone-500 hover:text-clay-700',
@@ -125,6 +183,7 @@ const t = ui[lang];
             <li>
               <a
                 href={`${lang === 'es' ? '/es' : ''}/#${link.url}`}
+                data-spy={link.url}
                 class="block rounded-xl px-3 py-3 text-base text-stone-700 transition-colors hover:bg-clay-50 hover:text-clay-700"
               >
                 {link.label}
@@ -192,4 +251,83 @@ const t = ui[lang];
   panel?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => panel.hidePopover?.());
   });
+
+  // "More" dropdown in the desktop nav: same native popover pattern as
+  // the mobile menu (light-dismiss, Escape and focus return from the
+  // browser). Only sync the button state and chevron, and close the
+  // dropdown when a link inside it is followed.
+  const moreButton = document.getElementById('more-menu-button');
+  const morePanel = document.getElementById('more-menu');
+  const moreChevron = document.getElementById('more-menu-chevron');
+
+  morePanel?.addEventListener('toggle', () => {
+    const open = morePanel.matches(':popover-open');
+    moreButton?.setAttribute('aria-expanded', String(open));
+    moreChevron?.classList.toggle('rotate-180', open);
+  });
+
+  morePanel?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => morePanel.hidePopover?.());
+  });
+
+  // Scroll-spy: highlight the nav link of the section currently in view
+  // (desktop nav, "More" dropdown and mobile menu share the same state).
+  // `data-spy` carries the section id on every nav link; the "More"
+  // button lights up too when the active section is one of the grouped
+  // ones. The hero (`top`) has no nav link, so nothing is active there.
+  const spyLinks = [...document.querySelectorAll('[data-spy]')];
+  const groupedUrls = ['education', 'publications', 'hobbies'];
+
+  function setSpyLinkActive(link, active) {
+    if (active) {
+      link.setAttribute('aria-current', 'true');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+    // Each link's base color is stone-600 (desktop) or stone-700 (mobile
+    // menu and dropdown); the active style is the existing clay-700.
+    const baseColor = link.classList.contains('text-stone-700')
+      ? 'text-stone-700'
+      : 'text-stone-600';
+    link.classList.toggle('text-clay-700', active);
+    link.classList.toggle(baseColor, !active);
+  }
+
+  function setActiveSection(id) {
+    spyLinks.forEach((link) => setSpyLinkActive(link, link.dataset.spy === id));
+    const moreActive = groupedUrls.includes(id);
+    if (moreActive) {
+      moreButton?.setAttribute('aria-current', 'true');
+    } else {
+      moreButton?.removeAttribute('aria-current');
+    }
+    moreButton?.classList.toggle('text-clay-700', moreActive);
+    moreButton?.classList.toggle('text-stone-600', !moreActive);
+  }
+
+  const sections = [...document.querySelectorAll('section[id]')];
+  const inView = new Set();
+  const spy = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          inView.add(entry.target.id);
+        } else {
+          inView.delete(entry.target.id);
+        }
+      });
+      if (!inView.size) return;
+      // When two sections straddle the band, the topmost one wins.
+      const topmost = [...inView].sort(
+        (a, b) =>
+          document.getElementById(a)?.getBoundingClientRect().top -
+          document.getElementById(b)?.getBoundingClientRect().top,
+      )[0];
+      setActiveSection(topmost);
+    },
+    // A band near the top of the viewport: the section crossing it is
+    // the one the reader is in.
+    { rootMargin: '-10% 0px -80% 0px' },
+  );
+  sections.forEach((section) => spy.observe(section));
 </script>

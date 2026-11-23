@@ -9,18 +9,17 @@ import '../styles/global.css';
 
 interface Props {
   lang: Lang;
+  title?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, title } = Astro.props;
 const data = lang === 'es' ? cvEs : cvEn;
 const t = ui[lang];
 
+const pageTitle = title ?? data.meta.title;
+
 const canonicalPath = lang === 'es' ? '/es/' : '/';
 const canonical = new URL(canonicalPath, data.meta.siteUrl).toString();
-const altCanonical = new URL(
-  lang === 'es' ? '/' : '/es/',
-  data.meta.siteUrl,
-).toString();
 ---
 
 <!doctype html>
@@ -28,7 +27,7 @@ const altCanonical = new URL(
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{data.meta.title}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={data.meta.description} />
     <meta name="author" content={data.meta.authorName} />
     <link rel="canonical" href={canonical} />
@@ -42,11 +41,15 @@ const altCanonical = new URL(
       hreflang="es"
       href={new URL('/es/', data.meta.siteUrl).toString()}
     />
-    <link rel="alternate" hreflang="x-default" href={altCanonical} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL('/', data.meta.siteUrl).toString()}
+    />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={data.meta.authorName} />
-    <meta property="og:title" content={data.meta.title} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={data.meta.description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={data.meta.locale} />
@@ -55,7 +58,7 @@ const altCanonical = new URL(
       content={new URL(data.meta.authorAvatar, data.meta.siteUrl).toString()}
     />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={data.meta.title} />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={data.meta.description} />
 
     <meta name="theme-color" content="#fdfbf7" />

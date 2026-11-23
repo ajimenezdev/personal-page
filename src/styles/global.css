@@ -135,6 +135,43 @@ section[id] {
   }
 }
 
+/* "More" dropdown in the desktop nav (Impeccable critique: 9 nav links
+   exceed working memory, so 3 live under "More"): same native popover
+   pattern as the mobile menu — light-dismiss, Escape and focus return
+   from the browser. Anchored under the button, with a plain offset as
+   fallback where CSS anchor positioning is not supported. The `hidden`
+   class stays in the markup so the dropdown is closed without popover
+   support; `:popover-open` shows it when open, only at the md
+   breakpoint. */
+#more-menu-button {
+  anchor-name: --more-menu-button;
+}
+#more-menu {
+  position: fixed;
+  inset: auto;
+  top: 4.25rem; /* header height (py-3 + h-11 button) */
+  right: max(1.25rem, calc((100vw - 72rem) / 2 + 1.25rem)); /* container's right edge */
+  top: anchor(--more-menu-button bottom);
+  right: anchor(--more-menu-button right);
+  width: max-content;
+  min-width: 11rem;
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0.375rem;
+  border: 1px solid var(--color-stone-200);
+  border-radius: 1rem;
+  background: var(--color-paper);
+  box-shadow: var(--shadow-card);
+}
+#more-menu::backdrop {
+  background: transparent;
+}
+@media (width >= 48rem) {
+  #more-menu:popover-open {
+    display: block;
+  }
+}
+
 /* Print: the page doubles as a printable CV. */
 @media print {
   header,

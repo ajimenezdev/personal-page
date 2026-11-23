@@ -14,8 +14,8 @@ const data = lang === 'es' ? cvEs : cvEn;
 const t = ui[lang];
 ---
 
-<section id="publications" aria-labelledby="publications-heading" class="py-20">
-  <SectionHeading title={t.publicationsTitle} />
+<section id="publications" aria-labelledby="publications-heading" class="py-16">
+  <SectionHeading id="publications-heading" title={t.publicationsTitle} variant="minor" />
   <div class="grid gap-5 sm:grid-cols-2">
     {
       data.publications.map((pub) => (

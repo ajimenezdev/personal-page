@@ -18,7 +18,7 @@ const paragraphs = data.authorDescription.split(/<br\s*\/?>\s*<br\s*\/?>/);
 ---
 
 <section id="about" aria-labelledby="about-heading" class="py-16">
-  <SectionHeading title={t.aboutTitle} />
+  <SectionHeading id="about-heading" title={t.aboutTitle} />
   <div class="max-w-3xl space-y-4 text-lg leading-relaxed text-stone-700">
     {paragraphs.map((p) => <p>{p.trim()}</p>)}
   </div>

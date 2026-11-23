@@ -5,6 +5,7 @@ export interface UIStrings {
   siteOwner: string;
   languageLabel: string;
   menuLabel: string;
+  moreLabel: string;
   english: string;
   spanish: string;
   heroGreeting: string;
@@ -41,9 +42,10 @@ export const ui: Record<Lang, UIStrings> = {
     siteOwner: 'Álvaro Jiménez Martín',
     languageLabel: 'Language',
     menuLabel: 'Menu',
+    moreLabel: 'More',
     english: 'English',
     spanish: 'Español',
-    heroGreeting: "Hi! I’m Alvaro!",
+    heroGreeting: "Hi! I’m Álvaro!",
     heroCtaContact: 'Get in touch',
     heroCtaResume: 'Download résumé',
     resumeFileName: 'Alvaro_Jimenez_Martin_Resume.pdf',
@@ -57,7 +59,7 @@ export const ui: Record<Lang, UIStrings> = {
       'Proof of work: this very website was designed and built with AI assistance.',
     educationTitle: 'Education',
     languagesTitle: 'Languages',
-    publicationsTitle: 'Publications',
+    publicationsTitle: 'Teaching',
     projectsTitle: 'Projects',
     projectsIntro: 'A selection of my public repositories, ordered by stars.',
     projectsFallback:
@@ -78,6 +80,7 @@ export const ui: Record<Lang, UIStrings> = {
     siteOwner: 'Álvaro Jiménez Martín',
     languageLabel: 'Idioma',
     menuLabel: 'Menú',
+    moreLabel: 'Más',
     english: 'English',
     spanish: 'Español',
     heroGreeting: '¡Hola! ¡Soy Álvaro!',
@@ -94,7 +97,7 @@ export const ui: Record<Lang, UIStrings> = {
       'La prueba: esta misma web se diseñó y construyó con ayuda de IA.',
     educationTitle: 'Educación',
     languagesTitle: 'Idiomas',
-    publicationsTitle: 'Publicaciones',
+    publicationsTitle: 'Cursos',
     projectsTitle: 'Proyectos',
     projectsIntro:
       'Una selección de mis repositorios públicos, ordenados por estrellas.',

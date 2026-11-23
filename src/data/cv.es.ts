@@ -42,8 +42,8 @@ export const cv: CvData = {
       duration: null,
       location: 'En remoto',
       occupation: 'Mobile Engineer',
-      // BORRADOR — descripción pendiente de redactar por Álvaro.
-      description: '',
+      description:
+        'En el equipo de Ads Manager App, trabajo en las notificaciones y en la experiencia de usuario que las rodea: que las empresas vean lo importante de sus campañas, de forma clara y a tiempo.',
     },
     {
       company: 'Bitfinex',
@@ -190,7 +190,7 @@ export const cv: CvData = {
     { label: 'Experiencia', url: 'experience' },
     { label: 'IA', url: 'ai' },
     { label: 'Educación', url: 'education' },
-    { label: 'Publicaciones', url: 'publications' },
+    { label: 'Cursos', url: 'publications' },
     { label: 'Proyectos', url: 'projects' },
     { label: 'Aficiones', url: 'hobbies' },
     { label: 'Contacto', url: 'contact' },
